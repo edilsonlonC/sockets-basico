@@ -13,18 +13,20 @@ io.on('connection', (client) => {
     })
 
     // listen 
-    client.on('enviarmensaje',(message , callback) => {
-        console.log(message);
-        if (message.user){
-            callback({
-                resp: 'good req'
-            })
-        }
-        else {
-            callback({
-                resp : 'bad req'
-            })
-        }
+    client.on('enviarmensaje',(data , callback) => {
+        console.log(data);
+        // send message all users
+        client.broadcast.emit('enviarmensaje',data)
+        // if (message.user){
+        //     callback({
+        //         resp: 'good req'
+        //     })
+        // }
+        // else {
+        //     callback({
+        //         resp : 'bad req'
+        //     })
+        // }
     })
     
 })
